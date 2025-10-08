@@ -7,5 +7,5 @@ Este é meu portifólio como monorepo **atualmente estou trabalhando no front-en
 ## Run in project root
 
 ```
-npm run web
+npm run dev
 ```
