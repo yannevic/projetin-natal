@@ -1,14 +1,10 @@
 import Window from '@components/ui/window';
-import useCurrentTime from '@utils/useCurrentTime';
 import { Button } from '@components/ui/button';
-
 import heroNana from '@/assets/hero.png';
 import linkedin from '@/assets/linkedin.png';
 import github from '@/assets/github.png';
 import whatsapp from '@/assets/whatsapp.png';
 import curriculo from '@/assets/curriculo.png';
-import calendar from '@/assets/calendar.png';
-import clock from '@/assets/clock.png';
 
 function HeroSection() {
   const heroWrapperStyles = `
@@ -32,8 +28,6 @@ function HeroSection() {
     },
     { name: 'Currículo', img: curriculo, link: '' },
   ];
-
-  const { date, time } = useCurrentTime();
 
   return (
     <div style={bgStyle} className={heroWrapperStyles}>
@@ -67,24 +61,6 @@ function HeroSection() {
       <Window className="mt-[12px]" windowTitle="Nana" showButtons>
         <div className="w-full h-full p-[25px] flex items-center justify-center ">
           <img src={heroNana} alt="" />
-        </div>
-      </Window>
-      <Window
-        className="absolute top-[20px] right-[20px]"
-        headerClasses="bg-[#82AADE]"
-        windowTitle="Data/Hora"
-        windowTitleClasses="text-[18px]"
-        showButtons
-      >
-        <div className="flex flex-col gap-[8px] w-full p-[10px] pl-[25px] text-[20px] ">
-          <div className="items-center flex flex-row gap-[8px]">
-            <img className="w-[40px]" src={calendar} alt="" />
-            <p>{date}</p>
-          </div>
-          <div className="items-center flex flex-row gap-[8px]">
-            <img className="w-[40px]" src={clock} alt="" />
-            <p>{time}</p>
-          </div>
         </div>
       </Window>
     </div>

@@ -1,15 +1,17 @@
 @import 'tw-animate-css';
 @import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 @tailwind utilities;
 
 :root {
-  font-family: 'VT323', monospace;
-
+  font-family: var(--font-default);
   --nome-cor: #000000;
 }
 
 @theme {
+  --font-default: 'VT323', monospace;
+  --font-special: 'Indie Flower', cursive;
   --shadow-window: -11px 16px rgba(34, 18, 8, 1);
 }
