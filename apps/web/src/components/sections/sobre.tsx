@@ -18,7 +18,7 @@ function AboutMeSection() {
 
   return (
     <div style={bgStyle} className={aboutWrapperStyles}>
-      <Window className="mt-[12px]" windowTitle="Nana" showButtons>
+      <Window className="mt-[12px]" windowTitle="Nana">
         <div className="w-full h-full p-[25px] flex items-center justify-center ">
           <img src={aboutNana} alt="" />
         </div>
@@ -30,8 +30,8 @@ function AboutMeSection() {
         </p>
         <h2 className={cn('mt-9', titleClasses)}>Aspirações</h2>
         <p className=" text-[24px]">
-          Quero desenvolver sites ou aplicativos e sistemas que facilitem a vida de todos ao meu
-          redor .
+          Quero desenvolver sites, aplicativos e sistemas que facilitem a vida de todos ao meu redor
+          .
         </p>
         <h2 className={cn('mt-9', titleClasses)}>Hobbies</h2>
         <p className=" text-[24px]">

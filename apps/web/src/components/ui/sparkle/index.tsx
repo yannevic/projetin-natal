@@ -11,7 +11,7 @@ export default function Star({ x, y, size }: StarProps) {
   return (
     <img
       src={estrela}
-      alt="Estrela decorativa"
+      alt=""
       width={size}
       height={size}
       className={styles.twinkle}

@@ -70,8 +70,10 @@ const WindowWrapper = React.forwardRef<HTMLDivElement, WindowWrapperProps>(
                 □
               </Button>
               <Button
+                type="button"
+                onClick={closeButton}
                 asChild={false}
-                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#F2F2E8]"
+                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#F2F2E8] transition duration-300 ease-in-out hover:cursor-pointer hover:scale-[1.05]"
               >
                 X
               </Button>
@@ -80,15 +82,15 @@ const WindowWrapper = React.forwardRef<HTMLDivElement, WindowWrapperProps>(
             <div className="flex flex-row gap-[5px]">
               <Button
                 asChild={false}
-                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#F2F2E8]"
+                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#E9D3DF]"
               />
               <Button
                 asChild={false}
-                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#F2F2E8]"
+                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#E9D3DF]"
               />
               <Button
                 asChild={false}
-                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#F2F2E8]"
+                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#E9D3DF]"
               />
             </div>
           )}
