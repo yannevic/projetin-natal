@@ -82,7 +82,7 @@ function MyProjectsSection() {
                 <track kind="captions" srcLang="pt" label="Português" default />
               </video>
               <div className="w-full text-wrap px-[15px] py-[5px] text-[18px]">
-                <p className="text-wrap">
+                <p className="text-wrap ">
                   Attack feet behind the couch destroy couch flop over give attitude hide when
                   guests come over hopped up on goofballs hunt anything that moves intently sniff
                   hand.

@@ -1,8 +1,10 @@
 import Star from '@/components/ui/sparkle/index';
 import TimerWindow from './components/ui/timer';
 import HeroSection from './components/sections/hero';
+import StudiesSection from './components/sections/estudos';
 import MyProjectsSection from './components/sections/projetos';
 import AboutMeSection from './components/sections/sobre';
+import ContactSection from './components/sections/contato';
 
 function App() {
   const stars = [
@@ -20,10 +22,11 @@ function App() {
   return (
     <div className="relative">
       <HeroSection />
+      <StudiesSection />
       <MyProjectsSection />
       <AboutMeSection />
+      <ContactSection />
       <TimerWindow />
-
       <div className=" min-w-[100vw] min-h-[100vh] pointer-events-none relative ">
         {stars.map((star) => (
           <Star key={`${star.x}-${star.y}-${star.size}`} {...star} />

@@ -37,9 +37,9 @@ export default function TimerWindow() {
           </div>
         </Window>
       ) : (
-        <div className="fixed top-[100px] right-[20px] hover:cursor-pointer hover:scale-[1.03]  transition duration-300 ease-in-out">
+        <div className="fixed top-[100px] right-[20px] hover:scale-[1.03]  transition duration-300 ease-in-out">
           <Button asChild={false} onClick={handleTimerWindow}>
-            <img src={baloon} alt="" />
+            <img src={baloon} alt="" className="cursor-pointer" />
           </Button>
         </div>
       )}
