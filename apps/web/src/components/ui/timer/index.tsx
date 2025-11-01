@@ -23,6 +23,7 @@ export default function TimerWindow() {
           windowTitle="Data/Hora"
           windowTitleClasses="text-[18px]"
           showButtons
+          variant="blue"
           closeButton={handleTimerWindow}
         >
           <div className="flex flex-col gap-[8px] w-full p-[10px] pl-[25px] text-[20px] ">

@@ -27,7 +27,7 @@ function App() {
       <AboutMeSection />
       <ContactSection />
       <TimerWindow />
-      <div className=" min-w-[100vw] min-h-[100vh] pointer-events-none relative ">
+      <div className=" min-w-[100vw] pointer-events-none relative ">
         {stars.map((star) => (
           <Star key={`${star.x}-${star.y}-${star.size}`} {...star} />
         ))}

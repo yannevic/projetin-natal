@@ -12,6 +12,7 @@ interface WindowWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   isBaloonChat?: boolean;
   minimizeButton?: () => void;
   closeButton?: () => void;
+  variant?: 'pink' | 'blue';
 }
 
 const WindowWrapper = React.forwardRef<HTMLDivElement, WindowWrapperProps>(
@@ -26,6 +27,7 @@ const WindowWrapper = React.forwardRef<HTMLDivElement, WindowWrapperProps>(
       headerClasses,
       showButtons = false,
       children,
+      variant = 'pink',
       ...props
     },
     ref
@@ -43,9 +45,10 @@ const WindowWrapper = React.forwardRef<HTMLDivElement, WindowWrapperProps>(
         {/* Header da janela */}
         <div
           className={cn(
-            'px-[14px] py-[12px] w-full h-[50px] gap-[20px] flex flex-row items-center justify-between rounded-t-[8px] border-b-[2px] bg-[#E9D3DF] border-[#221208]',
+            'px-[14px] py-[12px] w-full h-[50px] gap-[20px] flex flex-row items-center justify-between rounded-t-[8px] border-b-[2px]  border-[#221208]',
             windowTitle ? 'justify-between' : 'justify-end',
-            headerClasses
+            headerClasses,
+            variant === 'pink' ? 'bg-[#E9D3DF]' : 'bg-[#82AADE]'
           )}
         >
           {windowTitle ? (
@@ -80,18 +83,17 @@ const WindowWrapper = React.forwardRef<HTMLDivElement, WindowWrapperProps>(
             </div>
           ) : (
             <div className="flex flex-row gap-[5px]">
-              <Button
-                asChild={false}
-                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#E9D3DF]"
-              />
-              <Button
-                asChild={false}
-                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#E9D3DF]"
-              />
-              <Button
-                asChild={false}
-                className="p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px] bg-[#E9D3DF]"
-              />
+              {[...Array(3)].map((_, index) => (
+                <Button
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`button-${index}`}
+                  asChild={false}
+                  className={cn(
+                    'p-[10px] w-[20px] h-[20px] gap-[10px] rounded-[3px] border-[1px]',
+                    variant === 'pink' ? 'bg-[#E9D3DF]' : 'bg-[#82AADE]'
+                  )}
+                />
+              ))}
             </div>
           )}
         </div>
