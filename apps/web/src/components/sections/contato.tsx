@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Window from '@components/ui/window';
 import { Button } from '@components/ui/button';
 import CustomInput from '@components/ui/input';
+import sound from '@/assets/sounds/send.mp3';
 
 function ContactSection() {
   const aboutWrapperStyles = `
@@ -20,9 +21,35 @@ function ContactSection() {
   const emailRef = React.useRef<HTMLInputElement>(null);
   const textoRef = React.useRef<HTMLInputElement>(null);
 
-  function sendEmail() {
-    // console.log(nomeRef, assuntoRef, emailRef, textoRef);
-  }
+  const som = () => {
+    const audio = new Audio(sound);
+    audio.volume = 0.2;
+    audio.play();
+  };
+
+  const [sendMessage, setSendMessage] = useState<boolean | null>(null);
+
+  const handleOpenModal = () => {
+    setSendMessage(true);
+  };
+  const handleCloseModal = () => {
+    setSendMessage(false);
+  };
+  const backButton = () => {
+    handleCloseModal();
+  };
+
+  useEffect(() => {
+    if (sendMessage) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [sendMessage]);
 
   return (
     <div style={bgStyle} className={aboutWrapperStyles}>
@@ -73,7 +100,10 @@ function ContactSection() {
             <div className="flex justify-center">
               <Button
                 type="button"
-                onClick={() => sendEmail}
+                onClick={() => {
+                  som();
+                  handleOpenModal();
+                }}
                 asChild={false}
                 className="flex items-center justify-center w-[180px] h-[55px] bg-[#82AADE] text-[32px] p-[5px] hover:cursor-pointer hover:scale-[1.03] border-[2px] transition duration-300 ease-in-out"
               >
@@ -83,6 +113,26 @@ function ContactSection() {
           </form>
         </div>
       </Window>
+      {sendMessage && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <Window windowTitle="Atenção" showButtons closeButton={handleCloseModal}>
+            <div className="flex flex-col items-center justify-center w-[320px] ">
+              <div className="w-full py-[24px] text-[24px]">
+                <p className="text-center text-wrap">Mensagem enviada com sucesso!</p>
+              </div>
+              <div className="flex flex-row gap-[20px] pb-[10px]">
+                <Button
+                  asChild={false}
+                  onClick={backButton}
+                  className="w-[140px] h-[45px] bg-[#82AADE] text-[28px] p-[5px] hover:cursor-pointer hover:scale-[1.03] border-[2px] transition duration-300 ease-in-out"
+                >
+                  Voltar
+                </Button>
+              </div>
+            </div>
+          </Window>
+        </div>
+      )}
     </div>
   );
 }

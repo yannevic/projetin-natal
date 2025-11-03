@@ -5,6 +5,7 @@ import StudiesSection from './components/sections/estudos';
 import MyProjectsSection from './components/sections/projetos';
 import AboutMeSection from './components/sections/sobre';
 import ContactSection from './components/sections/contato';
+import FooterSection from './components/sections/footer';
 
 function App() {
   const stars = [
@@ -26,6 +27,7 @@ function App() {
       <MyProjectsSection />
       <AboutMeSection />
       <ContactSection />
+      <FooterSection />
       <TimerWindow />
       <div className=" min-w-[100vw] pointer-events-none relative ">
         {stars.map((star) => (
