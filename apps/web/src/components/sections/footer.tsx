@@ -36,8 +36,7 @@ function FooterSection() {
             </a>
           </div>
 
-          <p>© {new Date().getFullYear()} Nana.</p>
-          <p>Todos os direitos reservados.</p>
+          <p>Nana {new Date().getFullYear()} </p>
           <p>Página desenvolvida com as stack React, tailwind, etc .</p>
         </div>
       </footer>
