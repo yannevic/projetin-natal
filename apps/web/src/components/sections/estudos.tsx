@@ -61,7 +61,12 @@ const bookItens = [
       {
         name: 'React',
         img: [react],
-        description: ['Básico de prototipagem'],
+        description: [
+          'Arquitetura com componentes',
+          'Gerenciamento de estados',
+          'JSX e lógica de renderização',
+          'Integração com APIs (to estudando!!)',
+        ],
         color: '#F53AFF 33%',
       },
     ],
@@ -133,22 +138,22 @@ function StudiesSection() {
             <img
               src={code}
               alt="code-image"
-              className="absolute z-40 top-[68px] left-[285px] rotate-8 pointer-events-none"
+              className="absolute z-20 top-[68px] left-[285px] rotate-8 pointer-events-none"
             />
             <img
               src={pata}
               alt="pata-image"
-              className="absolute z-40 top-[60px] right-[60px] pointer-events-none"
+              className="absolute z-20 top-[60px] right-[60px] pointer-events-none"
             />
           </>
         )}
 
-        <div className="absolute flex left-[50px] top-0 font-special z-30">
+        <div className="absolute flex left-[50px] top-0 font-special z-10">
           {visiblePages.map((page) => (
             <div
               key={page.pageNumber}
               className={`w-full md:w-1/2 mt-[35px] flex flex-col items-start ${
-                page.pageNumber % 2 === 0 ? 'pl-10 mt-[90px] -skew-y-3 ' : 'skew-y-3 pl-2'
+                page.pageNumber % 2 === 0 ? 'pl-2 mt-[90px] -skew-y-3 ' : 'skew-y-3 pl-2'
               }`}
             >
               {(page.pageNumber === 1 || page.pageNumber === 3) && (
@@ -164,7 +169,7 @@ function StudiesSection() {
                 return (
                   <div key={item.name} className="flex items-start gap-3 mb-[30px] w-full">
                     <div
-                      className={`w-[50px] flex flex-col gap-4 ${page.pageNumber === 4 ? '-ml-3' : ''}`}
+                      className={`w-[50px] flex flex-col gap-4 ${page.pageNumber === 4 ? 'ml-4' : ''}`}
                     >
                       {page.pageNumber === 4 ? (
                         <>
@@ -194,7 +199,7 @@ function StudiesSection() {
                           className="absolute inset-0 rounded px-1 z-[-1] "
                           style={{ backgroundColor: bgColor, opacity }}
                         />
-                        <h4 className="text-lg relative z-10 font-semibold text-nowrap">
+                        <h4 className="text-lg relative z-20 font-semibold text-nowrap">
                           {item.name}
                         </h4>
                       </div>
@@ -213,7 +218,7 @@ function StudiesSection() {
           ))}
         </div>
 
-        <div className="absolute right-[36.4px] top-0">
+        <div className="absolute right-[30px] bottom-[6px] z-[999] w-[325px] h-[490px] ">
           <div
             role="button"
             tabIndex={0}
@@ -230,7 +235,7 @@ function StudiesSection() {
             }`}
             aria-label="Ir para páginas 3 e 4"
           >
-            <img src={arrow} alt="" />
+            <img className="z-[999]" src={arrow} alt="" />
           </div>
 
           <div
@@ -249,8 +254,8 @@ function StudiesSection() {
           >
             <img src={arrow} alt="" />
           </div>
-          <img className="z-10" src={folha} alt="Folha direita" />
         </div>
+        {/* <img className="absolute right-[36.4px] top-0 z-0" src={folha} alt="Folha direita" /> */}
       </div>
     </div>
   );

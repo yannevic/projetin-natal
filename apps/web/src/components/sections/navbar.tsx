@@ -54,7 +54,7 @@ function NavBar({ scrollProgress }: NavBarProps) {
   }, []);
 
   return (
-    <div className="border-b-[2px] pt-[40px] pl-[40px] bg-[#F2F2E8] flex flex-row fixed top-0 left-0 w-full z-50">
+    <div className="border-b-[2px] pt-[40px] pl-[40px] bg-[#E8F1F2] flex flex-row fixed top-0 left-0 w-full z-50">
       <div className="flex flex-row gap-[10px] translate-y-[2px]">
         {navItens.map((item) => {
           const isActive = item.id === activeSection;
@@ -75,7 +75,7 @@ function NavBar({ scrollProgress }: NavBarProps) {
       </div>
       <div className="flex w-full items-middle justify-end text-[20px] text-[#715B7C] py-[4px] mr-[10px]">
         <span>{isComplete ? 'Visualização completa!!!' : 'Visualizando página...'}</span>
-        <div className="flex flex-row gap-[5px] border-[1px] items-center px-[4px] bg-[#FDD9BF] ml-2">
+        <div className="flex flex-row gap-[5px] border-[1px] items-center px-[4px] bg-[#FEEFE4] ml-2">
           {chargeIds.map((id, index) => (
             <div
               key={id}
