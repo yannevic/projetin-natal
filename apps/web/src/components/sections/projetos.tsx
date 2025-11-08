@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Window from '@components/ui/window';
 import folder from '@/assets/folder.png';
 import folderEmpty from '@/assets/folder1.png';
+import cn from '@/utils/cn';
 
 const projects = [
   { name: 'Pokedex', img: folder, video: './src/assets/videos/test.mp4' },
@@ -60,7 +61,10 @@ function MyProjectsSection() {
             <button
               type="button"
               key={project.name}
-              className="text-[#221208]  text-center cursor-pointer bg-transparent border-none h-full flex items-center flex-col justify-start w-full overflow-hidden"
+              className={cn(
+                'text-[#221208]  text-center cursor-pointer bg-transparent border-none h-full flex items-center flex-col justify-start w-full overflow-hidden',
+                project.name === 'Unknow' ? 'pointer-events-none' : ''
+              )}
               onClick={() => handleOpenModal(project.name, project.video)}
             >
               <img src={project.img} alt="" className="mb-[4px]" />

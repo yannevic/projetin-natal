@@ -3,13 +3,12 @@ import Window from '@components/ui/window';
 import { Button } from '@components/ui/button';
 import CustomInput from '@components/ui/input';
 import sound from '@/assets/sounds/send.mp3';
+import atencao from '@/assets/sounds/atencao.mp3';
 
 function ContactSection() {
   const aboutWrapperStyles = `
     flex flex-col gap-[120px] min-w-full min-h-[100vh] 
     items-center justify-center flex flex-row
-     
-    
   `;
 
   const bgStyle = {
@@ -23,11 +22,18 @@ function ContactSection() {
 
   const som = () => {
     const audio = new Audio(sound);
-    audio.volume = 0.4;
+    audio.volume = 0.8;
     audio.play();
   };
 
+  const som2 = () => {
+    const audio2 = new Audio(atencao);
+    audio2.volume = 0.2;
+    audio2.play();
+  };
+
   const [sendMessage, setSendMessage] = useState<boolean | null>(null);
+  const [showError, setShowError] = useState(false);
 
   const handleOpenModal = () => {
     setSendMessage(true);
@@ -40,16 +46,20 @@ function ContactSection() {
   };
 
   useEffect(() => {
-    if (sendMessage) {
-      document.body.classList.add('overflow-hidden');
+    if (sendMessage || showError) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     } else {
-      document.body.classList.remove('overflow-hidden');
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     }
 
     return () => {
-      document.body.classList.remove('overflow-hidden');
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     };
-  }, [sendMessage]);
+  }, [sendMessage, showError]);
 
   return (
     <div id="contato" style={bgStyle} className={aboutWrapperStyles}>
@@ -79,7 +89,8 @@ function ContactSection() {
                 emailRef.current!.value = '';
                 textoRef.current!.value = '';
               } else {
-                alert('Por favor, preencha todos os campos obrigatórios.');
+                som2();
+                setShowError(true);
               }
             }}
           >
@@ -145,6 +156,34 @@ function ContactSection() {
             <div className="flex flex-col items-center justify-center w-[320px] ">
               <div className="w-full py-[24px] text-[24px]">
                 <p className="text-center text-wrap">Mensagem enviada com sucesso!</p>
+              </div>
+              <div className="flex flex-row gap-[20px] pb-[10px]">
+                <Button
+                  asChild={false}
+                  onClick={backButton}
+                  className="w-[140px] h-[45px] bg-[#82AADE] text-[28px] p-[5px] hover:cursor-pointer hover:scale-[1.03] border-[2px] transition duration-300 ease-in-out"
+                >
+                  Voltar
+                </Button>
+              </div>
+            </div>
+          </Window>
+        </div>
+      )}
+      {showError && (
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50"
+          onClick={() => setShowError(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === 'Escape') setShowError(false);
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          <Window windowTitle="Atenção" showButtons closeButton={() => setShowError(false)}>
+            <div className="flex flex-col items-center justify-center w-[320px] ">
+              <div className="w-full py-[24px] text-[22px]">
+                <p className="text-center text-wrap">Preencha todos os campos antes de enviar.</p>
               </div>
               <div className="flex flex-row gap-[20px] pb-[10px]">
                 <Button

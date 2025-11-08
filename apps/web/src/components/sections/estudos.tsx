@@ -6,6 +6,8 @@ import folha from '@/assets//book/folha-right.svg';
 import html from '@/assets/book/html.png';
 import css from '@/assets/book/css.png';
 import js from '@/assets/book/js.png';
+import pata from '@/assets/book/pata.png';
+import code from '@/assets/book/code.png';
 import tailwind from '@/assets/book/tailwind.png';
 import github from '@/assets/book/github.png';
 import python from '@/assets/book/python.png';
@@ -126,6 +128,20 @@ function StudiesSection() {
 
       <div className="relative">
         <img className="z-0" src={book} alt="Livro aberto" />
+        {currentSpread === 1 && (
+          <>
+            <img
+              src={code}
+              alt="code-image"
+              className="absolute z-40 top-[68px] left-[285px] rotate-8 pointer-events-none"
+            />
+            <img
+              src={pata}
+              alt="pata-image"
+              className="absolute z-40 top-[60px] right-[60px] pointer-events-none"
+            />
+          </>
+        )}
 
         <div className="absolute flex left-[50px] top-0 font-special z-30">
           {visiblePages.map((page) => (
@@ -233,8 +249,6 @@ function StudiesSection() {
           >
             <img src={arrow} alt="" />
           </div>
-
-          {/* Folha decorativa */}
           <img className="z-10" src={folha} alt="Folha direita" />
         </div>
       </div>

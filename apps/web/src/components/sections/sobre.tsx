@@ -6,8 +6,6 @@ function AboutMeSection() {
   const aboutWrapperStyles = `
     flex flex-col gap-[120px] min-w-full min-h-[100vh] 
     items-center justify-center flex flex-row
-     
-    
   `;
 
   const bgStyle = {
@@ -25,9 +23,14 @@ function AboutMeSection() {
       </Window>
       <div className="w-[570px] px-[50px] pt-[40px] pb-[60px] flex flex-col font-special text-[#221208]">
         <h2 className={titleClasses}>Olá!</h2>
-        <p className=" text-[24px]">
-          Meu nome é Yanne, tenho 27 anos, amo minha cachorrinha Pérola e adoro programação.
+        <p className="text-[24px]">
+          Meu nome é Yanne, tenho{' '}
+          {new Date().getFullYear() -
+            1998 -
+            (new Date() < new Date(new Date().getFullYear(), 5, 27) ? 1 : 0)}{' '}
+          anos, amo minha cachorrinha Pérola e adoro programação.
         </p>
+
         <h2 className={cn('mt-9', titleClasses)}>Aspirações</h2>
         <p className=" text-[24px]">
           Quero desenvolver sites, aplicativos e sistemas que facilitem a vida de todos ao meu redor

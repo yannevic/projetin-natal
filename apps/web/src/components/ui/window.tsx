@@ -42,7 +42,6 @@ const WindowWrapper = React.forwardRef<HTMLDivElement, WindowWrapperProps>(
         )}
         {...props}
       >
-        {/* Header da janela */}
         <div
           className={cn(
             'px-[14px] py-[12px] w-full h-[50px] gap-[20px] flex flex-row items-center justify-between rounded-t-[8px] border-b-[2px]  border-[#221208]',
@@ -98,7 +97,6 @@ const WindowWrapper = React.forwardRef<HTMLDivElement, WindowWrapperProps>(
           )}
         </div>
 
-        {/* Conteúdo dinâmico */}
         <div className=" w-full min-h-[50px]  rounded-bl-[4px] bg-[#F2F2E8]">{children}</div>
 
         {isBaloonChat ? (
