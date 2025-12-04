@@ -1,8 +1,5 @@
 @import 'tw-animate-css';
 @import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-
 @tailwind utilities;
 
 :root {
@@ -14,22 +11,4 @@
   --font-default: 'VT323', monospace;
   --font-special: 'Indie Flower', cursive;
   --shadow-window: -11px 16px rgba(34, 18, 8, 1);
-}
-
-.twinkle {
-  animation: twinkle 1.5s ease-in-out infinite;
-  position: fixed;
-  pointer-events: none;
-}
-
-@keyframes twinkle {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.3);
-    opacity: 1;
-  }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "monorepo_template",
   "private": true,
   "version": "1.0.0",
   "packageManager": "npm@10.2.4",
