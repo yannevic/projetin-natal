@@ -17,3 +17,21 @@ npm install
 ```
 npm run dev
 ```
+
+## Para subir o projeto a primeira vez, verificar se existe origem de repositório.
+
+```
+git remote -v
+```
+
+Caso não exista nenhuma origin:
+
+```
+git remote add origin url_do_projeto
+```
+
+Caso já exista:
+
+```
+git remote set-url origin url_do_projeto
+```
