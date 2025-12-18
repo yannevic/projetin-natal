@@ -298,9 +298,9 @@ export default function App() {
           <button
             type="button"
             onClick={limparTabuleiro}
-            className="bg-gray-600 hover:bg-gray-500 text-[9px] font-bold py-3 px-5 rounded-xl border-b-4 border-gray-800 active:border-b-0"
+            className="bg-[#b71c1c] hover:bg-[#d32f2f] text-white text-[9px] font-bold py-3 px-5 rounded-xl border-b-4 border-[#7f0000] active:border-b-0 transition-colors"
           >
-            DESVIRAR CARTAS
+            REINICIAR🔁
           </button>
 
           <div className="flex items-center gap-6 md:gap-10">
@@ -325,7 +325,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center bg-[#2b4561] p-2 rounded-2xl border-2 border-yellow-500">
+            <div className="flex flex-col items-center bg-[#2b4561] p-2 rounded-2xl border-2 border-yellow-500 golden-glow">
               <p className="text-[7px] text-yellow-300 font-bold mb-1 uppercase">Sua Carta</p>
               {cartaSecreta && (
                 <div className="bg-white p-1.5 rounded-lg border-2 border-black relative">
@@ -364,9 +364,9 @@ export default function App() {
           <button
             type="button"
             onClick={novoJogo}
-            className="bg-yellow-500 text-black text-[9px] font-bold py-3 px-5 rounded-xl border-b-4 border-yellow-700 active:border-b-0"
+            className="bg-[#1b5e20] hover:bg-[#2e7d32] text-white text-[9px] font-bold py-3 px-5 rounded-xl border-b-4 border-[#003300] active:border-b-0 transition-colors"
           >
-            PRÓXIMA RODADA
+            NOVA RODADA 🎄
           </button>
         </div>
       </footer>
