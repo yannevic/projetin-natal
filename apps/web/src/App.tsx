@@ -7,7 +7,7 @@ interface Carta {
   imagem: string;
   tags: string[];
   descartada: boolean;
-  elixir: number; // Nova propriedade
+  elixir: number;
 }
 
 const listaCartasInicial: Omit<Carta, 'descartada'>[] = [
@@ -238,13 +238,19 @@ const listaCartasInicial: Omit<Carta, 'descartada'>[] = [
 ];
 
 export default function App() {
-  const [cartas, setCartas] = useState<Carta[]>(
-    listaCartasInicial.map((c) => ({ ...c, descartada: false }))
-  );
+  const [cartas, setCartas] = useState<Carta[]>([]);
   const [cartaSecreta, setCartaSecreta] = useState<Carta | null>(null);
   const [pontos, setPontos] = useState({ player1: 0, player2: 0 });
 
-  // DECLARAÇÃO ANTES DO USO
+  // 1. Inicializa o tabuleiro e a carta secreta apenas UMA VEZ ao carregar
+  useEffect(() => {
+    const tabuleiroInicial = listaCartasInicial.map((c) => ({ ...c, descartada: false }));
+    setCartas(tabuleiroInicial);
+
+    const indice = Math.floor(Math.random() * listaCartasInicial.length);
+    setCartaSecreta({ ...listaCartasInicial[indice], descartada: false });
+  }, []);
+
   const limparTabuleiro = () => {
     setCartas((prev) => prev.map((c) => ({ ...c, descartada: false })));
   };
@@ -255,17 +261,13 @@ export default function App() {
     limparTabuleiro();
   };
 
-  useEffect(() => {
-    novoJogo();
-  });
-
   const alternarDescarte = (id: number) => {
-    setCartas(cartas.map((c) => (c.id === id ? { ...c, descartada: !c.descartada } : c)));
+    setCartas((prev) => prev.map((c) => (c.id === id ? { ...c, descartada: !c.descartada } : c)));
   };
 
   return (
-    <div className="min-h-screen bg-[#1a2a3a] text-white overflow-hidden">
-      <main className="tabuleiro pt-2 pb-44">
+    <div className="h-screen w-screen flex flex-col bg-[#1a2a3a] text-white overflow-hidden">
+      <main className="tabuleiro">
         {cartas.map((carta, index) => (
           <button
             type="button"
@@ -273,22 +275,18 @@ export default function App() {
             className={`card-container ${carta.descartada ? 'descartada' : ''}`}
             onClick={() => alternarDescarte(carta.id)}
           >
-            {index > 23 ? (
-              <div className="tags-info top-[50px]!">{carta.tags.join(' • ')}</div>
-            ) : (
-              <div className="tags-info">{carta.tags.join(' • ')}</div>
-            )}
+            <div className={`tags-info ${index > 23 ? 'top-[50px]!' : ''}`}>
+              {carta.tags.join(' • ')}
+            </div>
 
             <img
               src={carta.imagem}
               alt={carta.nome}
-              className="w-full h-[135px] object-contain pointer-events-none"
+              className="w-full h-[120px] object-contain pointer-events-none"
             />
 
-            <span className="elixir-drop absolute! bottom-[25px]! ">
-              {carta.elixir === 0 ? '?' : carta.elixir}
-            </span>
-            <p className="font-bold uppercase text-[9px] md:text-[11px] leading-tight truncate">
+            <span className="elixir-drop">{carta.elixir === 0 ? '?' : carta.elixir}</span>
+            <p className="font-bold uppercase text-[9px] md:text-[11px] leading-tight truncate w-full">
               {carta.nome}
             </p>
           </button>
@@ -300,27 +298,26 @@ export default function App() {
           <button
             type="button"
             onClick={limparTabuleiro}
-            className="bg-gray-600 hover:bg-gray-500 text-[10px] font-bold py-4 px-6 rounded-xl border-b-4 border-gray-800 active:border-b-0"
+            className="bg-gray-600 hover:bg-gray-500 text-[9px] font-bold py-3 px-5 rounded-xl border-b-4 border-gray-800 active:border-b-0"
           >
             DESVIRAR CARTAS
           </button>
 
-          <div className="flex items-center gap-8 md:gap-12">
-            {/* Player 1 */}
+          <div className="flex items-center gap-6 md:gap-10">
             <div className="text-center">
-              <p className="text-xs text-blue-400 font-bold mb-1">Nana🌸</p>
-              <p className="text-4xl font-bold leading-none mb-2">{pontos.player1}</p>
-              <div className="flex gap-2 justify-center">
+              <p className="text-[10px] text-blue-400 font-bold mb-1">Nana🌸</p>
+              <p className="text-3xl font-bold leading-none mb-1">{pontos.player1}</p>
+              <div className="flex gap-1.5 justify-center">
                 <button
                   type="button"
-                  className="bg-blue-600 px-4 py-1 rounded-lg font-bold"
+                  className="bg-blue-600 px-3 py-1 rounded-lg font-bold"
                   onClick={() => setPontos({ ...pontos, player1: pontos.player1 + 1 })}
                 >
                   +
                 </button>
                 <button
                   type="button"
-                  className="bg-blue-800 px-4 py-1 rounded-lg font-bold"
+                  className="bg-blue-800 px-3 py-1 rounded-lg font-bold"
                   onClick={() => setPontos({ ...pontos, player1: Math.max(0, pontos.player1 - 1) })}
                 >
                   -
@@ -328,36 +325,34 @@ export default function App() {
               </div>
             </div>
 
-            {/* Carta Secreta */}
-            <div className="flex flex-col items-center bg-[#2b4561] p-3 rounded-2xl border-2 border-yellow-500">
-              <p className="text-[8px] text-yellow-300 font-bold mb-1 uppercase">Sua Carta</p>
+            <div className="flex flex-col items-center bg-[#2b4561] p-2 rounded-2xl border-2 border-yellow-500">
+              <p className="text-[7px] text-yellow-300 font-bold mb-1 uppercase">Sua Carta</p>
               {cartaSecreta && (
-                <div className="bg-white p-2 rounded-lg border-2 border-black relative">
-                  <span className="elixir-drop-mini scale-150">{cartaSecreta.elixir}</span>
+                <div className="bg-white p-1.5 rounded-lg border-2 border-black relative">
+                  <span className="elixir-drop-mini scale-125">{cartaSecreta.elixir}</span>
                   <img
                     src={cartaSecreta.imagem}
                     alt="Secreta"
-                    className="w-16 h-16 md:w-24 md:h-24 object-contain"
+                    className="w-14 h-14 md:w-20 md:h-20 object-contain"
                   />
                 </div>
               )}
             </div>
 
-            {/* Player 2 */}
             <div className="text-center">
-              <p className="text-xs text-red-400 font-bold mb-1">Mo😭</p>
-              <p className="text-4xl font-bold leading-none mb-2">{pontos.player2}</p>
-              <div className="flex gap-2 justify-center">
+              <p className="text-[10px] text-red-400 font-bold mb-1">Mo😭</p>
+              <p className="text-3xl font-bold leading-none mb-1">{pontos.player2}</p>
+              <div className="flex gap-1.5 justify-center">
                 <button
                   type="button"
-                  className="bg-red-600 px-4 py-1 rounded-lg font-bold"
+                  className="bg-red-600 px-3 py-1 rounded-lg font-bold"
                   onClick={() => setPontos({ ...pontos, player2: pontos.player2 + 1 })}
                 >
                   +
                 </button>
                 <button
                   type="button"
-                  className="bg-red-800 px-4 py-1 rounded-lg font-bold"
+                  className="bg-red-800 px-3 py-1 rounded-lg font-bold"
                   onClick={() => setPontos({ ...pontos, player2: Math.max(0, pontos.player2 - 1) })}
                 >
                   -
@@ -369,7 +364,7 @@ export default function App() {
           <button
             type="button"
             onClick={novoJogo}
-            className="bg-yellow-500 text-black text-[10px] font-bold py-4 px-6 rounded-xl border-b-4 border-yellow-700 active:border-b-0"
+            className="bg-yellow-500 text-black text-[9px] font-bold py-3 px-5 rounded-xl border-b-4 border-yellow-700 active:border-b-0"
           >
             PRÓXIMA RODADA
           </button>
