@@ -1,14 +1,186 @@
 @import 'tw-animate-css';
 @import 'tailwindcss';
-@tailwind utilities;
-
-:root {
-  font-family: var(--font-default);
-  --nome-cor: #000000;
-}
 
 @theme {
   --font-default: 'VT323', monospace;
   --font-special: 'Indie Flower', cursive;
   --shadow-window: -11px 16px rgba(34, 18, 8, 1);
+}
+
+:root {
+  font-family: var(--font-default);
+  background-color: #1a2a3a; /* Azul escuro estilo Clash Royale */
+  color: white;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box !important;
+}
+
+/* Reset básico sem destruir o layout */
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #1a2a3a;
+  /* O segredo: alinhar o conteúdo em coluna para não sobrar pixel */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo para a carta descartada */
+.descartada {
+  filter: grayscale(1) opacity(0.3);
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+}
+
+/* Container do Tabuleiro */
+.tabuleiro {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 135px));
+  gap: 10px;
+  padding: 15px;
+  justify-content: center;
+  align-content: start;
+
+  /* Faz o tabuleiro ocupar o espaço restante sem empurrar o footer */
+  flex: 1;
+  overflow-y: auto;
+  background-color: #1a2a3a;
+}
+/* Estilo do Card */
+.card-container {
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 2px;
+  border: 3px solid #333;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.1s;
+  width: 135px;
+}
+
+.card-container:hover .tags-info {
+  opacity: 1;
+}
+
+.card-container p {
+  padding: 2px 0;
+  margin-top: 4px;
+}
+
+.tags-info {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.95);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 9999 !important;
+  transition: opacity 0.2s;
+  border: 1px solid #ffd700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Placar e Rodapé */
+.placar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #555;
+}
+
+.carta-secreta-area {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  background: #2b4561;
+  padding: 15px;
+  border-radius: 15px 15px 0 0;
+  border: 3px solid #ffd700;
+  text-align: center;
+}
+
+.elixir-drop {
+  background: #de2ef1; /* Cor roxa do elixir */
+  color: white;
+  width: 16px;
+  height: 16px;
+  border-radius: 50% 50% 50% 10%; /* Formato de gota */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  border: 1px solid #fff;
+  transform: rotate(-10deg);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Gota menor para a carta secreta */
+.elixir-drop-mini {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  background: #de2ef1;
+  color: white;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  z-index: 2;
+}
+
+footer {
+  flex-shrink: 0;
+  width: 100%;
+  background-color: #0f1923;
+  border-top: 4px solid #333;
+  /* Aumentamos o padding vertical de 20px para 32px */
+  padding: 32px 20px;
+  min-height: 160px; /* Garante que ele tenha uma presença forte na tela */
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  position: relative;
+}
+.footer-area {
+  flex-shrink: 0; /* Impede o footer de sumir ou diminuir */
+  background-color: #0f1923;
+  border-top: 4px solid #333;
+  padding: 25px 20px;
+  width: 100%;
+  z-index: 20;
+}
+/* Se estiver no celular, 8 colunas fica muito pequeno, então usamos 4 */
+@media (max-width: 768px) {
+  .tabuleiro {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
 }
