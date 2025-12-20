@@ -305,7 +305,7 @@ export default function App() {
 
           <div className="flex items-center gap-6 md:gap-10">
             <div className="text-center">
-              <p className="text-[10px] text-blue-400 font-bold mb-1">Nana🌸</p>
+              <p className="text-[10px] text-blue-400 font-bold mb-1">Player 1🌸</p>
               <p className="text-3xl font-bold leading-none mb-1">{pontos.player1}</p>
               <div className="flex gap-1.5 justify-center">
                 <button
@@ -340,7 +340,7 @@ export default function App() {
             </div>
 
             <div className="text-center">
-              <p className="text-[10px] text-red-400 font-bold mb-1">Mo😭</p>
+              <p className="text-[10px] text-red-400 font-bold mb-1">Player 2🌸</p>
               <p className="text-3xl font-bold leading-none mb-1">{pontos.player2}</p>
               <div className="flex gap-1.5 justify-center">
                 <button
